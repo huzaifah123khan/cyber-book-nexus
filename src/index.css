@@ -2,41 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* CyberBookRepo Design System - Cybersecurity themed design */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark cybersecurity theme */
+    --background: 210 30% 8%;
+    --foreground: 200 100% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 210 30% 11%;
+    --card-foreground: 200 100% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 210 30% 11%;
+    --popover-foreground: 200 100% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Electric blue primary */
+    --primary: 195 100% 50%;
+    --primary-foreground: 210 30% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Dark secondary with subtle blue */
+    --secondary: 210 25% 15%;
+    --secondary-foreground: 200 100% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 20% 20%;
+    --muted-foreground: 200 20% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Cyan accent */
+    --accent: 180 100% 50%;
+    --accent-foreground: 210 30% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 200 100% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 20% 25%;
+    --input: 210 20% 20%;
+    --ring: 195 100% 50%;
 
-    --radius: 0.5rem;
+    /* Cyber gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(195 100% 50%) 0%, hsl(180 100% 50%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(210 30% 11%) 0%, hsl(210 25% 15%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(210 30% 8%) 0%, hsl(210 25% 12%) 50%, hsl(195 80% 15%) 100%);
+    
+    /* Cyber shadows and glows */
+    --shadow-cyber: 0 0 20px hsl(195 100% 50% / 0.3);
+    --shadow-card: 0 8px 32px hsl(195 100% 50% / 0.1);
+    --glow-cyber: 0 0 40px hsl(195 100% 50% / 0.4);
+    
+    /* Smooth transitions */
+    --transition-cyber: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +116,50 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-hero);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Cyber card component */
+  .cyber-card {
+    @apply bg-card border border-border rounded-lg p-6;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-cyber);
+  }
+  
+  .cyber-card:hover {
+    box-shadow: var(--shadow-cyber);
+    transform: translateY(-4px);
+  }
+  
+  /* Cyber button variants */
+  .cyber-button {
+    @apply px-6 py-3 rounded-lg font-semibold;
+    background: var(--gradient-cyber);
+    transition: var(--transition-cyber);
+  }
+  
+  .cyber-button:hover {
+    box-shadow: var(--glow-cyber);
+    transform: scale(1.05);
+  }
+  
+  /* Cyber input styling */
+  .cyber-input {
+    @apply bg-input border-border;
+    box-shadow: inset 0 2px 8px hsl(195 100% 50% / 0.1);
+  }
+  
+  .cyber-input:focus {
+    box-shadow: inset 0 2px 8px hsl(195 100% 50% / 0.1), var(--shadow-cyber);
+  }
+  
+  /* Cyber navigation */
+  .cyber-nav {
+    @apply backdrop-blur-md border-b border-border;
+    background: hsl(210 30% 8% / 0.9);
   }
 }
